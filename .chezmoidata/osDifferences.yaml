@@ -6,7 +6,6 @@ osDifferences:
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
     pnpm_home: "$HOME/Library/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-    ruby_path: "/opt/homebrew/opt/ruby/bin"
   linux-arch-wsl2:
     gpg_ssh_1password_path: "/mnt/c/Users/caioq/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
     antidote_path: "/usr/share/zsh-antidote/antidote.zsh"
