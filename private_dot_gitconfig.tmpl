@@ -1,9 +1,16 @@
+{{- $osDifferences := .osDifferences -}}
+{{- $osidExtended := .osidExtended -}}
+{{- $os := .os -}}
+{{- $isWsl := .wsl -}}
+
+[init]
+  defaultBranch = main
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	program = {{ get (dig $osidExtended "gpg_ssh_1password_path" $osDifferences) "gpg_ssh_1password_path" }}
 [commit]
 	gpgsign = true
 [user]
@@ -12,3 +19,14 @@
 	email = {{ .email }}
 [push]
 	autoSetupRemote = true
+
+
+{{ if ( and (eq $os "linux") (eq $isWsl "true")) -}}
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+{{ end -}}
+

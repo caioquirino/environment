@@ -1,0 +1,7 @@
+osDifferences:
+  darwin:
+    gpg_ssh_1password_path: "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  linux-arch-wsl2:
+    gpg_ssh_1password_path: "/mnt/c/Users/caioq/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+  linux-arch:
+    gpg_ssh_1password_path: "/usr/local/bin/op-ssh-sign"

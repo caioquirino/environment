@@ -1,13 +1,27 @@
 {{- $name := promptStringOnce . "name" "Name" -}}
 {{- $email := promptStringOnce . "email" "Email" -}}
 
+{{- $os := .chezmoi.os -}}
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
+
+{{- $wsl := false -}}
+{{-   $osid_extended := $osid -}}
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{-   $wsl = true -}}
+{{-   $osid_extended = printf "%s-%s-wsl2" .chezmoi.os .chezmoi.osRelease.id -}}
+{{   end }}
+{{ end }}
+
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    os = {{ $os | quote }}
     osid = {{ $osid | quote }}
+    osidExtended = {{ $osid_extended | quote }}
+    wsl = {{ $wsl | quote }}
   
