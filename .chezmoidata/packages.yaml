@@ -24,3 +24,21 @@ packages:
       - "mos"
       - "postman"
       - "spotify"
+  linux:
+    arch:
+      pacman:
+        - "zsh"
+        - "ruby"
+        - "kubectl"
+        - "nvm"
+        - "git"
+        - "neovim"
+        - "docker"
+        - "docker-compose"
+        - "htop"
+        - "tree"
+      aur:
+        - "spotify"
+        - "zsh-antidote"
+        - "aws-cli-bin"
+        - "sdkman-bin"

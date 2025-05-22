@@ -1,6 +1,12 @@
-# Generated using chezmoi
+{{- $osDifferences := .osDifferences -}}
+{{- $osidExtended := .osidExtended -}}
+{{- $os := .os -}}
+{{- $isWsl := .wsl -}}
 
-source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+{{- $nvmPath := (get (dig $osidExtended "nvm_path" $osDifferences) "nvm_path") -}}
+{{- $nvmBashCompletionPath := (get (dig $osidExtended "nvm_bash_completion_path" $osDifferences) "nvm_bash_completion_path") -}}
+
+source {{ get (dig $osidExtended "antidote_path" $osDifferences) "antidote_path" }}
 
 function is-macos() {
   [[ $OSTYPE == darwin* ]]
@@ -25,8 +31,8 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "{{ $nvmPath }}" ] && \. "{{ $nvmPath }}"  # This loads nvm
+[ -s "{{ $nvmBashCompletionPath }}" ] && \. "{{ $nvmBashCompletionPath }}"  # This loads nvm bash_completion
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
