@@ -3,6 +3,7 @@ packages:
     brews:
       - "git"
       - "antidote"
+      - "ruby"
       - "aws-sso-util"
       - "kubernetes-cli"
       - "nvm"
