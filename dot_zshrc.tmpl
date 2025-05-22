@@ -5,6 +5,7 @@
 
 {{- $nvmPath := (get (dig $osidExtended "nvm_path" $osDifferences) "nvm_path") -}}
 {{- $nvmBashCompletionPath := (get (dig $osidExtended "nvm_bash_completion_path" $osDifferences) "nvm_bash_completion_path") -}}
+{{- $pnpmHome := (get (dig $osidExtended "pnpm_home" $osDifferences) "pnpm_home") -}}
 
 source {{ get (dig $osidExtended "antidote_path" $osDifferences) "antidote_path" }}
 
@@ -27,9 +28,6 @@ export GITHUB_TOKEN={{ trimPrefix "SHA256:/" (onepasswordRead "op://Private/Gith
 export GIT_USERNAME={{onepasswordRead "op://Private/Github OS/username"}}
 export GIT_PASSWORD=$GITHUB_TOKEN
 
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "{{ $nvmPath }}" ] && \. "{{ $nvmPath }}"  # This loads nvm
 [ -s "{{ $nvmBashCompletionPath }}" ] && \. "{{ $nvmBashCompletionPath }}"  # This loads nvm bash_completion
@@ -39,7 +37,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # pnpm
-export PNPM_HOME="/Users/caio/Library/pnpm"
+export PNPM_HOME="{{ $pnpmHome }}"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

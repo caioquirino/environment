@@ -37,6 +37,7 @@ packages:
         - "docker-compose"
         - "htop"
         - "tree"
+        - "zip"
       aur:
         - "spotify"
         - "zsh-antidote"

@@ -1,0 +1,14 @@
+{{- $osDifferences := .osDifferences -}}
+{{- $osidExtended := .osidExtended -}}
+{{- $nvmPath := (get (dig $osidExtended "nvm_path" $osDifferences) "nvm_path") -}}
+
+#!/bin/bash
+set -e
+
+curl -s "https://get.sdkman.io" | bash
+
+source {{ $nvmPath }}
+nvm install 24
+nvm use 24
+npm i -g pnpm
+pnpm setup
