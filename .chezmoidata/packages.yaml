@@ -8,7 +8,6 @@ packages:
       - "nvm"
       - "neovim"
       - "colima"
-      - "comitizen"
       - "docker"
       - "docker-compose"
       - "htop"
