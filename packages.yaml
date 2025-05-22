@@ -1,0 +1,26 @@
+packages:
+  darwin:
+    brews:
+      - "git"
+      - "antidote"
+      - "aws-sso-util"
+      - "kubernetes-cli"
+      - "nvm"
+      - "neovim"
+      - "colima"
+      - "comitizen"
+      - "docker"
+      - "docker-compose"
+      - "htop"
+      - "tree"
+    casks:
+      - "font-droid-sans-mono-nerd-font"
+      - "font-hack-nerd-font"
+      - "font-fira-code-nerd-font"
+      - "font-jetbrains-mono-nerd-font"
+      - "font-roboto-mono-nerd-font"
+      - "font-fira-mono-nerd-font"
+      - "meld"
+      - "mos"
+      - "postman"
+      - "spotify"
