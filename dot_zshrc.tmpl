@@ -6,6 +6,7 @@
 {{- $nvmPath := (get (dig $osidExtended "nvm_path" $osDifferences) "nvm_path") -}}
 {{- $nvmBashCompletionPath := (get (dig $osidExtended "nvm_bash_completion_path" $osDifferences) "nvm_bash_completion_path") -}}
 {{- $pnpmHome := (get (dig $osidExtended "pnpm_home" $osDifferences) "pnpm_home") -}}
+{{- $androidSdkHome := (get (dig $osidExtended "android_sdk_home_path" $osDifferences) "android_sdk_home_path") -}}
 
 source {{ get (dig $osidExtended "antidote_path" $osDifferences) "antidote_path" }}
 
@@ -44,3 +45,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+export ANDROID_HOME={{ $androidSdkHome }}
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

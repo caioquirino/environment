@@ -8,6 +8,7 @@ osDifferences:
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
     pnpm_home: "$HOME/Library/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+    android_sdk_home_path: "$HOME/Library/Android/sdk"
   linux-arch-wsl2:
     ssh_agent_1password_enabled: false
     ssh_agent_1password_path: "<<disabled>>"
@@ -17,6 +18,7 @@ osDifferences:
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/bash_completion"
     pnpm_home: "$HOME/.local/share/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/.local/share/JetBrains/Toolbox/scripts"
+    android_sdk_home_path: "$HOME/Android/Sdk"
   linux-arch:
     ssh_agent_1password_enabled: true
     ssh_agent_1password_path: "~/.1password/agent.sock"
@@ -26,3 +28,4 @@ osDifferences:
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/bash_completion"
     pnpm_home: "$HOME/.local/share/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/.local/share/JetBrains/Toolbox/scripts"
+    android_sdk_home_path: "$HOME/Android/Sdk"

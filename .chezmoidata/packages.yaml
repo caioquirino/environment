@@ -49,3 +49,4 @@ packages:
         - "android-emulator"
         - "android-studio"
         - "jetbrains-toolbox"
+        - "slack-desktop"
