@@ -29,6 +29,7 @@ packages:
       pacman:
         - "zsh"
         - "ruby"
+        - "inetutils"
         - "kubectl"
         - "nvm"
         - "git"
