@@ -1,5 +1,7 @@
 osDifferences:
   darwin:
+    ssh_agent_1password_enabled: true
+    ssh_agent_1password_path: "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     gpg_ssh_1password_path: "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
     antidote_path: "/opt/homebrew/opt/antidote/share/antidote/antidote.zsh"
     nvm_path: "/opt/homebrew/opt/nvm/nvm.sh"
@@ -7,6 +9,8 @@ osDifferences:
     pnpm_home: "$HOME/Library/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
   linux-arch-wsl2:
+    ssh_agent_1password_enabled: false
+    ssh_agent_1password_path: "<<disabled>>"
     gpg_ssh_1password_path: "/mnt/c/Users/caioq/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
     antidote_path: "/usr/share/zsh-antidote/antidote.zsh"
     nvm_path: "/usr/share/nvm/init-nvm.sh"
@@ -14,7 +18,9 @@ osDifferences:
     pnpm_home: "$HOME/.local/share/pnpm"
     jetbrains_toolbox_scripts_path: "$HOME/.local/share/JetBrains/Toolbox/scripts"
   linux-arch:
-    gpg_ssh_1password_path: "/usr/local/bin/op-ssh-sign"
+    ssh_agent_1password_enabled: true
+    ssh_agent_1password_path: "~/.1password/agent.sock"
+    gpg_ssh_1password_path: "/opt/1Password/op-ssh-sign"
     antidote_path: "/usr/share/zsh-antidote/antidote.zsh"
     nvm_path: "/usr/share/nvm/init-nvm.sh"
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/bash_completion"

@@ -1,7 +1,13 @@
+{{- $osDifferences := .osDifferences -}}
+{{- $osidExtended := .osidExtended -}}
+{{- $sshAgentEnabled := (get (dig $osidExtended "ssh_agent_1password_enabled" $osDifferences) "ssh_agent_1password_enabled") -}}
+{{- $sshAgentPath := (get (dig $osidExtended "ssh_agent_1password_path" $osDifferences) "ssh_agent_1password_path") -}}
+
+{{ if eq $sshAgentEnabled true -}}
+Host *
+	IdentityAgent "{{ $sshAgentPath }}"
+{{ end }}
+
 {{ if eq .chezmoi.os "darwin" -}}
 Include /Users/caio/.colima/ssh_config
-
-Host *
-	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
 {{ end -}}
