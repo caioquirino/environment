@@ -27,6 +27,7 @@ antidote load
 export GITHUB_TOKEN={{ trimPrefix "SHA256:/" (onepasswordRead "op://Private/Github OS/fingerprint") }}
 export GIT_USERNAME={{onepasswordRead "op://Private/Github OS/username"}}
 export GIT_PASSWORD=$GITHUB_TOKEN
+export NPM_TOKEN={{onepasswordRead "op://Private/Github OS/npmAuthToken"}}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "{{ $nvmPath }}" ] && \. "{{ $nvmPath }}"  # This loads nvm

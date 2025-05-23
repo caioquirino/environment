@@ -9,4 +9,9 @@ set -e
 sudo systemctl enable zerotier-one
 sudo systemctl start zerotier-one
 
+sudo groupadd docker || true
+sudo usermod -aG docker $USER || true
+sudo groupadd adbusers || true
+sudo usermod -aG adbusers $USER || true
+
 {{- end }}

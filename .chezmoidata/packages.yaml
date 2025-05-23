@@ -39,8 +39,13 @@ packages:
         - "tree"
         - "zip"
         - "zerotier-one"
+        - "android-tools"
       aur:
         - "spotify"
         - "zsh-antidote"
         - "aws-cli-bin"
         - "sdkman-bin"
+        - "watchman-bin"
+        - "android-emulator"
+        - "android-studio"
+        - "jetbrains-toolbox"
