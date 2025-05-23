@@ -38,6 +38,7 @@ packages:
         - "htop"
         - "tree"
         - "zip"
+        - "zerotier-one"
       aur:
         - "spotify"
         - "zsh-antidote"

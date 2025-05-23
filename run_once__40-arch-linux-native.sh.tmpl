@@ -1,0 +1,12 @@
+{{- $osDifferences := .osDifferences -}}
+{{- $osidExtended := .osidExtended -}}
+
+#!/bin/bash
+set -e
+
+{{ if (and (eq .osid "linux-arch") (eq .wsl "false") ) -}}
+
+sudo systemctl enable zerotier-one
+sudo systemctl start zerotier-one
+
+{{- end }}
