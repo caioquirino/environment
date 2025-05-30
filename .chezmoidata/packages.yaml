@@ -41,6 +41,10 @@ packages:
         - "zip"
         - "zerotier-one"
         - "android-tools"
+        - "libcamera"
+        - "libcamera-tools"
+        - "pipewire-libcamera"
+        - "extra/pipewire-v4l2"
       aur:
         - "spotify"
         - "zsh-antidote"
@@ -50,4 +54,5 @@ packages:
         - "android-emulator"
         - "android-studio"
         - "jetbrains-toolbox"
-        - "slack-desktop"
+        - "slack-desktop-wayland"
+        - "darkly-bin"
