@@ -7,6 +7,9 @@ chezmoi init git@github.com:caioquirino/environment.git
 chezmoi apply
 ```
 
-## Chezmoi files:
+## Chezmoi files
 
 `$HOME/share/chezmoi`
+
+Install korganizer to get KDE to work with calendar
+
