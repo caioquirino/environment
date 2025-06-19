@@ -54,5 +54,4 @@ packages:
         - "android-emulator"
         - "android-studio"
         - "jetbrains-toolbox"
-        - "slack-desktop-wayland"
-        - "darkly-bin"
+        - "slack-desktop"
