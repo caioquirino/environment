@@ -45,6 +45,12 @@ packages:
         - "libcamera-tools"
         - "pipewire-libcamera"
         - "extra/pipewire-v4l2"
+        - "otf-droid-nerd"
+        - "ttf-hack-nerd"
+        - "otf-firamono-nerd"
+        - "ttf-firacode-nerd"
+        - "ttf-jetbrains-mono-nerd"
+        - "ttf-roboto-mono-nerd"
       aur:
         - "spotify"
         - "zsh-antidote"
@@ -55,3 +61,4 @@ packages:
         - "android-studio"
         - "jetbrains-toolbox"
         - "slack-desktop"
+        - "darkly-bin"
