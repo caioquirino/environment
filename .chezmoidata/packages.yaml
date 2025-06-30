@@ -39,6 +39,7 @@ packages:
         - "htop"
         - "tree"
         - "zip"
+        - "go"
         - "zerotier-one"
         - "android-tools"
         - "libcamera"
@@ -62,3 +63,4 @@ packages:
         - "jetbrains-toolbox"
         - "slack-desktop"
         - "darkly-bin"
+        - "tfenv"
