@@ -16,3 +16,11 @@ sudo chsh -s $(which zsh) $(whoami)
 
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java 17.0.15-tem
+
+sudo pipx ensurepath --global
+
+pipx install poetry
+pipx install pre-commit
+
+sdk install jikkou 0.35.1
+

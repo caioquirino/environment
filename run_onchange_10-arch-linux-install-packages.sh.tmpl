@@ -3,7 +3,7 @@ set -e
 
 {{ if eq .osid "linux-arch" -}}
 
-sudo pacman -S --noconfirm {{ .packages.linux.arch.pacman | join " " }}
-yay -S --noconfirm {{ .packages.linux.arch.aur | join " " }}
+sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.pacman | join " " }}
+yay -S --needed --noconfirm {{ .packages.linux.arch.aur | join " " }}
 
 {{ end -}}
