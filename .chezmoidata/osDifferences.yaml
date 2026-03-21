@@ -12,7 +12,7 @@ osDifferences:
   linux-arch-wsl2:
     ssh_agent_1password_enabled: false
     ssh_agent_1password_path: "<<disabled>>"
-    gpg_ssh_1password_path: "/mnt/c/Users/caioq/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+    gpg_ssh_1password_path: "/mnt/c/Users/<Username>/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
     antidote_path: "/usr/share/zsh-antidote/antidote.zsh"
     nvm_path: "/usr/share/nvm/init-nvm.sh"
     nvm_bash_completion_path: "/opt/homebrew/opt/nvm/bash_completion"
