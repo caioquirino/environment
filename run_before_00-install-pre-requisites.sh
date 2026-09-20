@@ -25,18 +25,51 @@ function install_pre_requisites_linux() {
         }
 
 
-        # skip if op is already in $PATH
-        type op >/dev/null 2>&1 || {
-            echo "I nstalling 1password-cli - wsl=$IS_WSL2"
-            if [ "$IS_WSL2" = true ]; then
-                OP_PATH=$(find /mnt/c/Users/Caio/AppData/Local/Microsoft/WinGet/Packages/ -name "op.exe" 2>/dev/null | head -n 1)
-                if [ -n "$OP_PATH" ]; then
-                    sudo ln -sf "$OP_PATH" /usr/bin/op
-                fi
-            else
-                yay -S 1password-cli --noconfirm
+        # On WSL2, install a resilient wrapper to invoke Windows op.exe
+        if [ "$IS_WSL2" = true ]; then
+            if [ ! -f /usr/local/bin/op ]; then
+                echo "Installing resilient 1Password CLI wrapper in /usr/local/bin/op"
+                sudo tee /usr/local/bin/op >/dev/null << 'WRAPPER_EOF'
+#!/bin/sh
+if command -v op.exe >/dev/null 2>&1; then
+    exec op.exe "$@"
+fi
+
+WIN_LOCALAPPDATA=""
+if command -v powershell.exe >/dev/null 2>&1; then
+    WIN_LOCALAPPDATA="$(wslpath "$(powershell.exe -NoProfile -Command '$env:LOCALAPPDATA' 2>/dev/null | tr -d '\r')" 2>/dev/null)"
+elif command -v cmd.exe >/dev/null 2>&1; then
+    WIN_LOCALAPPDATA="$(wslpath "$(cmd.exe /c "echo %LOCALAPPDATA%" 2>/dev/null | tr -d '\r')" 2>/dev/null)"
+fi
+
+if [ -n "$WIN_LOCALAPPDATA" ]; then
+    if [ -x "$WIN_LOCALAPPDATA/Microsoft/WinGet/Links/op.exe" ]; then
+        exec "$WIN_LOCALAPPDATA/Microsoft/WinGet/Links/op.exe" "$@"
+    fi
+    OP_PKG="$(find "$WIN_LOCALAPPDATA/Microsoft/WinGet/Packages" -maxdepth 3 -name "op.exe" 2>/dev/null | head -n 1)"
+    if [ -n "$OP_PKG" ] && [ -x "$OP_PKG" ]; then
+        exec "$OP_PKG" "$@"
+    fi
+fi
+
+for cand in \
+    "/mnt/c/Program Files/1Password/app/8/op.exe" \
+    "/mnt/c/Program Files/1Password/op.exe" \
+    "/mnt/c/Program Files (x86)/1Password/op.exe"
+do
+    if [ -x "$cand" ]; then
+        exec "$cand" "$@"
+    fi
+done
+
+echo "Error: op.exe not found on Windows host" >&2
+exit 1
+WRAPPER_EOF
+                sudo chmod +x /usr/local/bin/op
             fi
-        }
+        else
+            type op >/dev/null 2>&1 || yay -S 1password-cli --noconfirm
+        fi
     fi
 }
 

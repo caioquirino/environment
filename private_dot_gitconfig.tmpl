@@ -14,10 +14,24 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 {{ end -}}
+{{- $gpgProgram := get (dig $osidExtended "gpg_ssh_1password_path" $osDifferences) "gpg_ssh_1password_path" -}}
+{{- if and (eq $isWsl "true") (contains "<Username>" $gpgProgram) -}}
+{{-   $winUser := "" -}}
+{{-   if hasKey . "windowsUser" -}}
+{{-     $winUser = .windowsUser -}}
+{{-   end -}}
+{{-   if not $winUser -}}
+{{-     $winUser = output "powershell.exe" "-NoProfile" "-Command" "$env:USERNAME" | trim -}}
+{{-   end -}}
+{{-   if not $winUser -}}
+{{-     $winUser = output "cmd.exe" "/c" "echo %USERNAME%" | trim -}}
+{{-   end -}}
+{{-   $gpgProgram = replace "<Username>" $winUser $gpgProgram -}}
+{{- end -}}
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = {{ get (dig $osidExtended "gpg_ssh_1password_path" $osDifferences) "gpg_ssh_1password_path" }}
+	program = {{ $gpgProgram }}
 [commit]
 	gpgsign = true
 [user]
