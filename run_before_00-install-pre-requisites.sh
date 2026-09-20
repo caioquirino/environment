@@ -29,8 +29,10 @@ function install_pre_requisites_linux() {
         type op >/dev/null 2>&1 || {
             echo "I nstalling 1password-cli - wsl=$IS_WSL2"
             if [ "$IS_WSL2" = true ]; then
-                OP_PATH=$(find /mnt/c/Users/caioq/AppData/Local/Microsoft/WinGet/Packages/ -name "op.exe")
-                sudo ln -s $OP_PATH /usr/bin/op
+                OP_PATH=$(find /mnt/c/Users/Caio/AppData/Local/Microsoft/WinGet/Packages/ -name "op.exe" 2>/dev/null | head -n 1)
+                if [ -n "$OP_PATH" ]; then
+                    sudo ln -sf "$OP_PATH" /usr/bin/op
+                fi
             else
                 yay -S 1password-cli --noconfirm
             fi

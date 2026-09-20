@@ -7,8 +7,13 @@
   defaultBranch = main
 [core]
   editor = nvim
+{{- if ( and (eq $os "linux") (eq $isWsl "true")) }}
+  sshCommand = ssh.exe
+{{- end }}
+{{ if eq $os "darwin" -}}
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+{{ end -}}
 [gpg]
 	format = ssh
 [gpg "ssh"]
