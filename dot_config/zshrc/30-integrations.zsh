@@ -25,9 +25,11 @@ if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh)"
 fi
 
-# atuin — smarter history search; keeps Ctrl-R
+# atuin — smarter history search; keeps Ctrl-R.
+# Up/Down stay native zsh so a recalled line is immediately editable.
+# Ctrl-R is the only search UI. New commands are still written to both stores.
 if (( $+commands[atuin] )); then
-  eval "$(atuin init zsh)"
+  eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
 # direnv — per-project env, no extra action
