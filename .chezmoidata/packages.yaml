@@ -76,16 +76,16 @@ packages:
         - "zsh-antidote"
         - "aws-cli-bin"
         - "sdkman-bin"
-        - "android-emulator"
-        - "darkly-bin"
         - "tfenv"
-        - "snapd"
       native:
         aur:
           - "spotify"
           - "jetbrains-toolbox"
+          - "darkly-bin"
+          - "snapd"
         company:
           pacman:
             - "zerotier-one"
           aur:
             - "slack-desktop"
+            - "android-emulator"
