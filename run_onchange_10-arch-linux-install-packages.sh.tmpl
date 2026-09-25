@@ -4,7 +4,10 @@ set -e
 {{ if eq .osid "linux-arch" -}}
 sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.pacman | join " " }}
 yay -S --needed --noconfirm {{ .packages.linux.arch.aur | join " " }}
-{{- if eq .wsl "false" }}
+{{- if eq .wsl "true" }}
+yay -S --needed --noconfirm {{ .packages.linux.arch.wsl.aur | join " " }}
+{{- else }}
+sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.native.pacman | join " " }}
 yay -S --needed --noconfirm {{ .packages.linux.arch.native.aur | join " " }}
 {{- if .companyDevice }}
 sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.native.company.pacman | join " " }}

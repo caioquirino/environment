@@ -1,0 +1,4 @@
+# Fetch pages on first use and refresh them weekly, no manual `tldr --update`
+[updates]
+auto_update = true
+auto_update_interval_hours = 168
