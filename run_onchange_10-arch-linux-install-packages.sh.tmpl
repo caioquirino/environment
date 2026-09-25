@@ -2,8 +2,13 @@
 set -e
 
 {{ if eq .osid "linux-arch" -}}
-
 sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.pacman | join " " }}
 yay -S --needed --noconfirm {{ .packages.linux.arch.aur | join " " }}
-
+{{- if eq .wsl "false" }}
+yay -S --needed --noconfirm {{ .packages.linux.arch.native.aur | join " " }}
+{{- if .companyDevice }}
+sudo pacman -S --needed --noconfirm {{ .packages.linux.arch.native.company.pacman | join " " }}
+yay -S --needed --noconfirm {{ .packages.linux.arch.native.company.aur | join " " }}
+{{- end }}
+{{- end }}
 {{ end -}}

@@ -59,7 +59,6 @@ packages:
         - "jq"
         - "zip"
         - "go"
-        - "zerotier-one"
         - "pyenv"
         - "python-pipx"
         - "android-tools"
@@ -74,13 +73,19 @@ packages:
         - "ttf-jetbrains-mono-nerd"
         - "ttf-roboto-mono-nerd"
       aur:
-        - "spotify"
         - "zsh-antidote"
         - "aws-cli-bin"
         - "sdkman-bin"
         - "android-emulator"
-        - "jetbrains-toolbox"
-        - "slack-desktop"
         - "darkly-bin"
         - "tfenv"
         - "snapd"
+      native:
+        aur:
+          - "spotify"
+          - "jetbrains-toolbox"
+        company:
+          pacman:
+            - "zerotier-one"
+          aur:
+            - "slack-desktop"
