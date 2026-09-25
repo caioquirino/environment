@@ -1,0 +1,10 @@
+# Loader: source every file in ~/.config/bashrc.
+# Env, PATH, and aliases come from ~/.config/shell, shared with zsh.
+
+for _bashrc_f in "$HOME"/.config/bashrc/*; do
+  [ -f "$_bashrc_f" ] && . "$_bashrc_f"
+done
+unset _bashrc_f
+
+# huspy-cli-tools: lazy CodeArtifact auth for mvn/gradle
+[ -s "$HOME/.local/bin/codeartifact-lazy.sh" ] && . "$HOME/.local/bin/codeartifact-lazy.sh"

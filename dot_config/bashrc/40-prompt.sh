@@ -1,0 +1,4 @@
+# Prompt — oh-my-posh zen, same config as zsh.
+if command -v oh-my-posh >/dev/null 2>&1; then
+  eval "$(oh-my-posh init bash --config "$HOME/.config/ohmyposh/zen.toml")"
+fi
