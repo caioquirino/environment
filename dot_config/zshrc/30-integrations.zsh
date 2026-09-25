@@ -18,6 +18,12 @@ SAVEHIST=100000
 setopt APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_VERIFY HIST_IGNORE_SPACE
 
 # fzf keybindings (Ctrl-R, Ctrl-T, Alt-C)
+# fd lists files faster than find and honours .gitignore
+if (( $+commands[fd] )); then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+fi
 (( $+commands[fzf] )) && source <(fzf --zsh)
 
 # zoxide — `cd` that learns; `zi` to fuzzy-jump
