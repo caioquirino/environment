@@ -11,6 +11,7 @@ for _zshrc_f in ~/.config/zshrc/*(N.) ~/.config/zshrc/custom/*(N.); do
   source "$_zshrc_f"
 done
 unset _zshrc_f
-
+{{ if .companyDevice }}
 # huspy-cli-tools: lazy CodeArtifact auth for mvn/gradle
 [[ -s "$HOME/.local/bin/codeartifact-lazy.sh" ]] && source "$HOME/.local/bin/codeartifact-lazy.sh"
+{{ end -}}

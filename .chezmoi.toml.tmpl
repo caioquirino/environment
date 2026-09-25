@@ -1,5 +1,6 @@
 {{- $name := promptStringOnce . "name" "Name" -}}
 {{- $email := promptStringOnce . "email" "Email" -}}
+{{- $companyDevice := promptBoolOnce . "companyDevice" "Company device" false -}}
 
 {{- $os := .chezmoi.os -}}
 {{- $osid := .chezmoi.os -}}
@@ -25,9 +26,9 @@
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    companyDevice = {{ $companyDevice }}
     os = {{ $os | quote }}
     osid = {{ $osid | quote }}
     osidExtended = {{ $osid_extended | quote }}
     wsl = {{ $wsl | quote }}
     windowsUser = {{ $windowsUser | quote }}
-  
