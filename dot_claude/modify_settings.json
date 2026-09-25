@@ -1,0 +1,8 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Claude Code owns this file; only the statusLine key is managed here. */ -}}
+{{- $settings := dict -}}
+{{- if .chezmoi.stdin | trim -}}
+{{-   $settings = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $settings = setValueAtPath "statusLine" (dict "type" "command" "command" "ccstatusline" "padding" 0) $settings -}}
+{{- toPrettyJson $settings }}

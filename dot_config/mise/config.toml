@@ -6,6 +6,8 @@ maven = "3.9"
 gradle = "9"
 node = "24.21.0"
 "github:streamthoughts/jikkou" = "0.35.1"
+# Claude Code status line (settings in ~/.config/ccstatusline)
+"npm:ccstatusline" = "2"
 
 [settings]
 # Honour version files written for nvm/pyenv/jenv.

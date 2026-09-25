@@ -29,6 +29,7 @@ packages:
       - "tree"
       - "oh-my-posh"
     casks:
+      - "claude-code"
       - "font-droid-sans-mono-nerd-font"
       - "font-hack-nerd-font"
       - "font-fira-code-nerd-font"
@@ -88,6 +89,8 @@ packages:
         - "oh-my-posh-bin"
         - "aws-cli-bin"
         - "tfenv"
+        - "claude-code"
+        - "claude-cowork-linux"
       wsl:
         aur:
           - "wslu"
