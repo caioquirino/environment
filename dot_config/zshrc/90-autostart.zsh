@@ -3,8 +3,9 @@
 # -----------------------------------------------------
 
 if [[ -o interactive ]] && [[ $(tty) == *"pts"* ]] && (( $+commands[fastfetch] )); then
-  # Skip extra kitty splits/tabs; first window id is 1, non-kitty still shows it
-  if [[ -z ${KITTY_WINDOW_ID:-} || ${KITTY_WINDOW_ID} == 1 ]]; then
+  # Skip extra splits/tabs: first kitty window id is 1, first wezterm pane id
+  # is 0. Other terminals set neither and still show it.
+  if [[ ${KITTY_WINDOW_ID:-1} == 1 && ${WEZTERM_PANE:-0} == 0 ]]; then
     fastfetch
   fi
 fi
