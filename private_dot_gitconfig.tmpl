@@ -41,6 +41,22 @@
 	email = {{ .email }}
 [push]
 	autoSetupRemote = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+	autoSquash = true
+[fetch]
+	prune = true
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	algorithm = histogram
+	colorMoved = default
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
 
 
 {{ if ( and (eq $os "linux") (eq $isWsl "true")) -}}
