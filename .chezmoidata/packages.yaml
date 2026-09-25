@@ -22,6 +22,7 @@ packages:
       - "docker-compose"
       - "htop"
       - "tree"
+      - "oh-my-posh"
     casks:
       - "font-droid-sans-mono-nerd-font"
       - "font-hack-nerd-font"
@@ -74,6 +75,7 @@ packages:
         - "ttf-roboto-mono-nerd"
       aur:
         - "zsh-antidote"
+        - "oh-my-posh-bin"
         - "aws-cli-bin"
         - "sdkman-bin"
         - "tfenv"
