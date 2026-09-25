@@ -107,43 +107,34 @@ final_space = true
     style = 'diamond'
     background_templates = ['{{ if gt .Code 0 }}#e91e63{{ end }}']
 
-[[blocks]]
-  type = 'rprompt'
-
-  [[blocks.segments]]
-    leading_diamond = ''
-    trailing_diamond = ' '
-    template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-    foreground = '#ffffff'
-    background = '#0e8ac8'
-    type = 'java'
-    style = 'diamond'
-
-  [[blocks.segments]]
-    leading_diamond = ''
-    trailing_diamond = ' '
-    template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-    foreground = '#925837'
-    background = '#f3f0ec'
-    type = 'rust'
-    style = 'diamond'
-
-  [[blocks.segments]]
-    template = '  {{ .Icon }}{{ if ne .Status "stopped" }}{{ .Artist }} - {{ .Track }}{{ end }} '
-    foreground = '#111111'
-    powerline_symbol = ''
-    background = '#1BD760'
-    type = 'ytm'
-    style = 'powerline'
-    invert_powerline = true
-
-  [[blocks.segments]]
-    leading_diamond = ''
-    trailing_diamond = ''
-    template = ' {{ .CurrentDate | date .Format }} '
-    foreground = '#111111'
-    background = '#2e9599'
-    type = 'time'
-    style = 'diamond'
-    invert_powerline = true
-
+[[blocks.segments]]
+  leading_diamond = ''
+  trailing_diamond = ' '
+  template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+  foreground = '#ffffff'
+  background = '#0e8ac8'
+  type = 'java'
+  style = 'diamond'
+[[blocks.segments]]
+  leading_diamond = ''
+  trailing_diamond = ' '
+  template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+  foreground = '#925837'
+  background = '#f3f0ec'
+  type = 'rust'
+  style = 'diamond'
+[[blocks.segments]]
+  template = '  {{ .Icon }}{{ if ne .Status "stopped" }}{{ .Artist }} - {{ .Track }}{{ end }} '
+  foreground = '#111111'
+  powerline_symbol = ''
+  background = '#1BD760'
+  type = 'ytm'
+  style = 'powerline'
+[[blocks.segments]]
+  leading_diamond = ''
+  trailing_diamond = ''
+  template = ' {{ .CurrentDate | date .Format }} '
+  foreground = '#111111'
+  background = '#2e9599'
+  type = 'time'
+  style = 'diamond'
