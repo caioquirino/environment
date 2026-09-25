@@ -7,6 +7,8 @@ alias ff='fastfetch'
 alias ls='eza -a --icons=always'
 alias ll='eza -al --icons=always'
 alias lt='eza -a --tree --level=1 --icons=always'
+# bat as cat: highlighted on a terminal, byte-for-byte cat output in pipes
+command -v bat >/dev/null 2>&1 && alias cat='bat --paging=never --style=plain'
 alias shutdown='systemctl poweroff'
 alias v='nvim'
 alias vi='nvim'

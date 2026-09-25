@@ -1,0 +1,4 @@
+# Only overrides; everything else keeps yazi's defaults
+[mgr]
+show_hidden = true
+linemode    = "size"

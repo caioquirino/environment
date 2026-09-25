@@ -1,0 +1,8 @@
+# Diff renderers — press `|` in lazygit to cycle between them
+git:
+  diffRenderers:
+    # delta, styled by the [delta] section of ~/.gitconfig
+    - command: delta --paging=never
+    # git's plain diff, for when delta's layout gets in the way
+    - type: rawGit
+      name: default
