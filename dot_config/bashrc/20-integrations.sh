@@ -5,7 +5,7 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init bash)"
+  eval "$(zoxide init bash --cmd cd)"
 fi
 
 if command -v atuin >/dev/null 2>&1; then
@@ -18,7 +18,6 @@ fi
 
 if command -v bat >/dev/null 2>&1; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-  export BAT_THEME="${BAT_THEME:-ansi}"
 fi
 
 if command -v mise >/dev/null 2>&1; then
