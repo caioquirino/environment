@@ -1,3 +1,4 @@
 [".config/nvim"]
     type = "git-repo"
-    url = "git@github.com:caioquirino/lazy-vim-starter.git"
+    url = "https://github.com/AstroNvim/template.git"
+    refreshPeriod = "168h"
