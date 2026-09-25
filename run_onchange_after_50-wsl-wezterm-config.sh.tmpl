@@ -1,0 +1,17 @@
+{{ if eq .wsl "true" -}}
+#!/bin/bash
+set -e
+
+# WezTerm runs on Windows and reads %USERPROFILE%\.wezterm.lua, which chezmoi
+# (inside WSL) cannot target directly. Copy the managed file across.
+# dot_wezterm.lua hash: {{ include "dot_wezterm.lua" | sha256sum }}
+
+win_home="/mnt/c/Users/{{ .windowsUser }}"
+if [ ! -d "$win_home" ]; then
+  echo "wezterm: $win_home not found, skipping copy" >&2
+  exit 0
+fi
+
+cp "$HOME/.wezterm.lua" "$win_home/.wezterm.lua"
+echo "wezterm: copied config to $win_home/.wezterm.lua"
+{{ end -}}
