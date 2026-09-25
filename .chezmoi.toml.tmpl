@@ -32,3 +32,8 @@
     osidExtended = {{ $osid_extended | quote }}
     wsl = {{ $wsl | quote }}
     windowsUser = {{ $windowsUser | quote }}
+
+# Install yay and the 1Password CLI before chezmoi renders any template that
+# calls onepasswordRead. Exits immediately once both are present.
+[hooks.read-source-state.pre]
+    command = {{ joinPath .chezmoi.sourceDir ".install-pre-requisites.sh" | quote }}

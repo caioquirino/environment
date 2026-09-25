@@ -1,7 +1,12 @@
 #!/bin/sh
+# Bootstraps what chezmoi needs before it can render templates: yay on Arch
+# and the 1Password CLI (`op`). Runs as a read-source-state.pre hook (see
+# .chezmoi.toml.tmpl), so it runs on every chezmoi command and must stay
+# fast and quiet once everything is installed.
 set -e
 
-(export $(cat /etc/os-release | grep ^ID=))|| true
+ID=""
+[ -r /etc/os-release ] && ID=$(. /etc/os-release && echo "$ID")
 
 # if WSL2 is detected, set variable IS_WSL2 to true
 if uname -r | grep -q "WSL2"; then
@@ -10,18 +15,17 @@ else
     IS_WSL2=false
 fi
 
-function install_pre_requisites_linux() {
+install_pre_requisites_linux() {
     if [ "$ID" = "arch" ]; then
 
         # skip if yay is already in $PATH
         type yay >/dev/null 2>&1 || {
             # install yay unattended
-            sudo pacman -S --needed git base-devel
-            git clone https://aur.archlinux.org/yay.git
-            cd yay
-            makepkg -si --noconfirm
-            cd ..
-            rm -rf yay
+            sudo pacman -S --needed --noconfirm git base-devel
+            yay_build=$(mktemp -d)
+            git clone https://aur.archlinux.org/yay.git "$yay_build/yay"
+            (cd "$yay_build/yay" && makepkg -si --noconfirm)
+            rm -rf "$yay_build"
         }
 
 
@@ -74,18 +78,22 @@ WRAPPER_EOF
 }
 
 
-function install_pre_requisites_macos() {
+install_pre_requisites_macos() {
 
     # skip if brew is already installed
     type brew >/dev/null 2>&1 || {
         # install brew
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        # put the fresh brew on PATH for the rest of this script
+        for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+            [ -x "$b" ] && eval "$("$b" shellenv)" && break
+        done
     }
 
     # skip if op is already in $PATH
     type op >/dev/null 2>&1 || {
         # install 1password cli unattended
-        brew install 1password
+        brew install --cask 1password-cli
     }
 }
 
