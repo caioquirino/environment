@@ -5,6 +5,7 @@
 # General aliases live in ~/.config/shell/aliases.sh (shared with bash).
 [[ -r $HOME/.config/shell/aliases.sh ]] && source "$HOME/.config/shell/aliases.sh"
 
+{{ if and (eq .chezmoi.os "linux") (eq .wsl "false") -}}
 # ML4W apps (harmless if the flatpaks are gone)
 alias ml4w='flatpak run com.ml4w.welcome'
 alias ml4w-settings='flatpak run com.ml4w.settings'
@@ -22,3 +23,4 @@ alias ascii='~/.config/ml4w/scripts/figlet.sh'
 alias res1='xrandr --output DisplayPort-0 --mode 2560x1440 --rate 120'
 alias res2='xrandr --output DisplayPort-0 --mode 1920x1080 --rate 120'
 alias setkb='setxkbmap de;echo "Keyboard set back to de."'
+{{- end }}
