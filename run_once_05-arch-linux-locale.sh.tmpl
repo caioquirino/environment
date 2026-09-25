@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+{{ if eq .osid "linux-arch" -}}
+# WSL exports LANG=en_US.UTF-8 from Windows, but Arch ships no generated
+# locales. Without it zsh falls back to C and counts each byte of a Nerd Font
+# glyph as a column, which garbles oh-my-posh prompt redraws.
+if ! locale -a | grep -qix 'en_US.utf8'; then
+  sudo sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+  sudo locale-gen
+fi
+{{ end -}}
