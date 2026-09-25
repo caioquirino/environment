@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+# Install every tool pinned in the global mise config. Re-runs when it changes.
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
+if command -v mise >/dev/null 2>&1; then
+  mise install --yes
+  # pnpm/yarn launchers that follow each project's packageManager field
+  mise exec -- corepack enable
+else
+  echo "mise: not installed yet, skipping tool install" >&2
+fi

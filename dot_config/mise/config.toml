@@ -1,0 +1,12 @@
+# Global tool versions. A project's own mise.toml (or .nvmrc, .java-version,
+# .python-version) overrides these inside that project.
+[tools]
+java = "temurin-17"
+maven = "3.9"
+gradle = "9"
+node = "24"
+"github:streamthoughts/jikkou" = "0.35.1"
+
+[settings]
+# Honour version files written for nvm/pyenv/jenv.
+idiomatic_version_file_enable_tools = ["node", "java", "python"]
