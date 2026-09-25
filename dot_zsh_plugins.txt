@@ -1,43 +1,52 @@
+# antidote bundles — loaded by ~/.config/zshrc/20-plugins.zsh
+# Static bundle is regenerated automatically when this file changes.
 
-
-# set up Zsh completions with plugins
+# Completions: ez-compinit queues compdef calls and runs compinit once, cached
 mattmc3/ez-compinit
 zsh-users/zsh-completions kind:fpath path:src
 
-# frameworks like oh-my-zsh are supported
-getantidote/use-omz        # handle OMZ dependencies
-ohmyzsh/ohmyzsh path:lib   # load OMZ's library
-ohmyzsh/ohmyzsh path:plugins/colored-man-pages  # load OMZ plugins
-ohmyzsh/ohmyzsh path:plugins/magic-enter
+# Oh-My-Zsh without the framework: use-omz sets $ZSH/$ZSH_CACHE_DIR and
+# untangles OMZ internals so its lib and plugins load standalone.
+getantidote/use-omz
 
-ohmyzsh/ohmyzsh path:plugins/aws
+# OMZ lib, picked by hand. Skipped on purpose:
+#   key-bindings.zsh — 15-keybindings.zsh owns keys (and OMZ binds PageUp/Down)
+#   async_prompt, prompt_info_functions, vcs_info, spectrum, bzr — prompt is oh-my-posh
+#   nvm.zsh — nvm is lazy-loaded in 30-integrations.zsh
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:lib/compfix.zsh
+ohmyzsh/ohmyzsh path:lib/completion.zsh
+ohmyzsh/ohmyzsh path:lib/directories.zsh
+ohmyzsh/ohmyzsh path:lib/functions.zsh
+ohmyzsh/ohmyzsh path:lib/git.zsh
+ohmyzsh/ohmyzsh path:lib/grep.zsh
+ohmyzsh/ohmyzsh path:lib/history.zsh
+ohmyzsh/ohmyzsh path:lib/misc.zsh
+ohmyzsh/ohmyzsh path:lib/termsupport.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
+
+# OMZ plugins
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/web-search
+ohmyzsh/ohmyzsh path:plugins/copyfile
+ohmyzsh/ohmyzsh path:plugins/copybuffer
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/command-not-found
-
+ohmyzsh/ohmyzsh path:plugins/1password
+ohmyzsh/ohmyzsh path:plugins/aws
 ohmyzsh/ohmyzsh path:plugins/docker
 ohmyzsh/ohmyzsh path:plugins/docker-compose
-ohmyzsh/ohmyzsh path:plugins/1password
+ohmyzsh/ohmyzsh path:plugins/podman
 ohmyzsh/ohmyzsh path:plugins/gh
 ohmyzsh/ohmyzsh path:plugins/gradle
-ohmyzsh/ohmyzsh path:plugins/jenv
-ohmyzsh/ohmyzsh path:plugins/nvm
 ohmyzsh/ohmyzsh path:plugins/pip
-ohmyzsh/ohmyzsh path:plugins/pipenv
-ohmyzsh/ohmyzsh path:plugins/podman
 ohmyzsh/ohmyzsh path:plugins/poetry
 ohmyzsh/ohmyzsh path:plugins/python
-ohmyzsh/ohmyzsh path:plugins/sudo
+ohmyzsh/ohmyzsh path:plugins/archlinux conditional:is-arch
+ohmyzsh/ohmyzsh path:plugins/brew      conditional:is-macos
+ohmyzsh/ohmyzsh path:plugins/macos     conditional:is-macos
 
-ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/python
-ohmyzsh/ohmyzsh path:plugins/brew conditional:is-macos
-ohmyzsh/ohmyzsh path:plugins/macos conditional:is-macos
-
-
-sindresorhus/pure     kind:fpath
-romkatv/powerlevel10k kind:fpath
-
-# popular fish-like plugins
-mattmc3/zfunctions
+# Fish-like UX
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
-zsh-users/zsh-history-substring-search

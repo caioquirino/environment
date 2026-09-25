@@ -1,0 +1,17 @@
+{{- $antidotePath := get (dig .osidExtended "antidote_path" .osDifferences) "antidote_path" -}}
+# -----------------------------------------------------
+# Plugins — antidote, with Oh-My-Zsh lib/plugins via use-omz
+# Bundle list lives in ~/.zsh_plugins.txt
+# -----------------------------------------------------
+
+# Predicates for `conditional:` bundles in .zsh_plugins.txt
+is-macos() { [[ $OSTYPE == darwin* ]] }
+is-arch()  { [[ -r /etc/arch-release ]] }
+
+# compinit at most once every 20h; faster startup, same completions
+zstyle ':plugin:ez-compinit' 'use-cache' 'yes'
+
+if [[ -r {{ $antidotePath }} ]]; then
+  source {{ $antidotePath }}
+  antidote load
+fi
