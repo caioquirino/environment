@@ -19,6 +19,8 @@ end
 
 config.window_close_confirmation = 'NeverPrompt'
 
+config.tab_bar_at_bottom = true
+
 -- Built-in pane keys kept as-is:
 --   Ctrl+Shift+Arrows      move between panes
 --   Ctrl+Shift+Alt+Arrows  resize the current pane
