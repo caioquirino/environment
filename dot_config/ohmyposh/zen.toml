@@ -138,3 +138,15 @@ final_space = true
   background = '#2e9599'
   type = 'time'
   style = 'diamond'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '❯'
+    foreground = '#ff479c'
+    type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}#e91e63{{ end }}']
