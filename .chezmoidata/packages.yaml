@@ -45,6 +45,7 @@ packages:
         - "zsh"
         - "ruby"
         - "inetutils"
+        - "kitty-terminfo"
         - "kubectl"
         - "git"
         - "atuin"
