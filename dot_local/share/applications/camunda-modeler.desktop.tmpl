@@ -1,0 +1,17 @@
+{{- if eq .wsl "true" -}}
+[Desktop Entry]
+Version=1.0
+Name=Camunda Modeler
+Keywords=bpmn;dmn;form;rpa;modeler;camunda
+GenericName=Process Modeling Tool
+Type=Application
+Categories=Development
+Terminal=false
+StartupNotify=true
+MimeType=application/bpmn;application/dmn;application/camunda-form;application/rpa
+Icon=camunda-modeler
+X-Ayatana-Desktop-Shortcuts=NewWindow;RepositoryBrowser
+# WSL only: native Wayland (WSLg) for HiDPI scaling, smaller cursor. Overrides /usr/share/applications.
+Exec=env XCURSOR_SIZE=24 camunda-modeler --ozone-platform=wayland --enable-features=UseOzonePlatform %F
+Path=/opt/camunda-modeler
+{{- end -}}

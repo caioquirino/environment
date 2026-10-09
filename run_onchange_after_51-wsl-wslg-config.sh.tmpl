@@ -1,0 +1,36 @@
+{{ if eq .wsl "true" -}}
+#!/bin/bash
+set -e
+
+# WSLg reads %USERPROFILE%\.wslgconfig on the Windows side. Enable fractional
+# HiDPI scaling and force 150% for every WSLg app (4K monitor). Takes effect
+# after `wsl --shutdown`. Change the values below to tune; this script re-runs.
+# scale: 150
+
+win_home="/mnt/c/Users/{{ .windowsUser }}"
+target="$win_home/.wslgconfig"
+if [ ! -d "$win_home" ]; then
+  echo "wslg: $win_home not found, skipping" >&2
+  exit 0
+fi
+
+new=$(cat <<'EOF'
+[system-distro-env]
+WESTON_RDP_DISABLE_FRACTIONAL_HI_DPI_SCALING=false
+WESTON_RDP_DEBUG_DESKTOP_SCALING_FACTOR=150
+EOF
+)
+
+if [ -f "$target" ] && [ "$(tr -d '\r' < "$target")" = "$new" ]; then
+  exit 0
+fi
+
+# Keep a one-time backup of any hand-written config
+if [ -f "$target" ] && [ ! -f "$target.bak" ]; then
+  cp "$target" "$target.bak"
+  echo "wslg: backed up existing config to $target.bak"
+fi
+
+echo "$new" | sed 's/$/\r/' > "$target"
+echo "wslg: wrote $target; run 'wsl --shutdown' from Windows to apply"
+{{ end -}}
