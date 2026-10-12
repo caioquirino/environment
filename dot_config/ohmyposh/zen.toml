@@ -8,15 +8,73 @@ final_space = true
   auto = false
   notice = false
 
+# Colours come from one of two palettes, picked by TERM_BACKGROUND, which the
+# shell sets from the terminal's actual background (zshrc/35-term-background.zsh).
+[palettes]
+  template = '{{ if eq .Env.TERM_BACKGROUND "dark" }}dark{{ else }}light{{ end }}'
+
+  [palettes.list.light]
+    on_deep = '#ffffff'
+    on_bright = '#111111'
+    prompt = '#ff479c'
+    error = '#e91e63'
+    path = '#ff479c'
+    git = '#fffb38'
+    git_fg = '#193549'
+    git_changed = '#FF9248'
+    git_diverged = '#ff4500'
+    git_ahead = '#B388FF'
+    node = '#6CA35E'
+    go = '#8ED1F7'
+    julia = '#4063D8'
+    python = '#FFDE57'
+    ruby = '#AE1401'
+    azfunc = '#FEAC19'
+    root = '#ffff66'
+    exectime = '#83769c'
+    status = '#00897b'
+    java = '#0e8ac8'
+    rust = '#f3f0ec'
+    rust_fg = '#925837'
+    ytm = '#1BD760'
+    time = '#2e9599'
+
+  # Same hues, darker and less saturated, with soft light text.
+  [palettes.list.dark]
+    on_deep = '#e6e1e8'
+    on_bright = '#e6e1e8'
+    prompt = '#d9558f'
+    error = '#b0204f'
+    path = '#9c2f66'
+    git = '#6f6a1c'
+    git_fg = '#f0edc8'
+    git_changed = '#9a5422'
+    git_diverged = '#9a3318'
+    git_ahead = '#5f489e'
+    node = '#3d6636'
+    go = '#2c6885'
+    julia = '#2b4390'
+    python = '#84701c'
+    ruby = '#7a1408'
+    azfunc = '#8f6210'
+    root = '#7d7a22'
+    exectime = '#4f4862'
+    status = '#00594f'
+    java = '#0b5880'
+    rust = '#54463c'
+    rust_fg = '#e3b796'
+    ytm = '#147a3b'
+    time = '#1e5f63'
+
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
 
   [[blocks.segments]]
     template = '   {{ .Path }} '
-    foreground = '#ffffff'
+    foreground = 'p:on_deep'
     powerline_symbol = ''
-    background = '#ff479c'
+    background = 'p:path'
     type = 'path'
     style = 'powerline'
 
@@ -28,114 +86,114 @@ final_space = true
     leading_diamond = ''
     trailing_diamond = ''
     template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
-    foreground = '#193549'
+    foreground = 'p:git_fg'
     powerline_symbol = ''
-    background = '#fffb38'
+    background = 'p:git'
     type = 'git'
     style = 'powerline'
-    background_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}', '{{ if gt .Ahead 0 }}#B388FF{{ end }}', '{{ if gt .Behind 0 }}#B388FF{{ end }}']
+    background_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:git_changed{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git_diverged{{ end }}', '{{ if gt .Ahead 0 }}p:git_ahead{{ end }}', '{{ if gt .Behind 0 }}p:git_ahead{{ end }}']
 
   [[blocks.segments]]
     template = '  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} '
-    foreground = '#ffffff'
+    foreground = 'p:on_deep'
     powerline_symbol = ''
-    background = '#6CA35E'
+    background = 'p:node'
     type = 'node'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
-    foreground = '#111111'
+    foreground = 'p:on_bright'
     powerline_symbol = ''
-    background = '#8ED1F7'
+    background = 'p:go'
     type = 'go'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
-    foreground = '#111111'
+    foreground = 'p:on_bright'
     powerline_symbol = ''
-    background = '#4063D8'
+    background = 'p:julia'
     type = 'julia'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
-    foreground = '#111111'
+    foreground = 'p:on_bright'
     powerline_symbol = ''
-    background = '#FFDE57'
+    background = 'p:python'
     type = 'python'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
-    foreground = '#ffffff'
+    foreground = 'p:on_deep'
     powerline_symbol = ''
-    background = '#AE1401'
+    background = 'p:ruby'
     type = 'ruby'
     style = 'powerline'
 
   [[blocks.segments]]
     template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
-    foreground = '#ffffff'
+    foreground = 'p:on_deep'
     powerline_symbol = ''
-    background = '#FEAC19'
+    background = 'p:azfunc'
     type = 'azfunc'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '  '
-    foreground = '#111111'
+    foreground = 'p:on_bright'
     powerline_symbol = ''
-    background = '#ffff66'
+    background = 'p:root'
     type = 'root'
     style = 'powerline'
 
   [[blocks.segments]]
     template = '<transparent></>  {{ .FormattedMs }}⠀'
-    foreground = '#ffffff'
-    background = '#83769c'
+    foreground = 'p:on_deep'
+    background = 'p:exectime'
     type = 'executiontime'
     style = 'plain'
 
   [[blocks.segments]]
     trailing_diamond = ''
     template = '<parentBackground></>  '
-    foreground = '#ffffff'
-    background = '#00897b'
+    foreground = 'p:on_deep'
+    background = 'p:status'
     type = 'status'
     style = 'diamond'
-    background_templates = ['{{ if gt .Code 0 }}#e91e63{{ end }}']
+    background_templates = ['{{ if gt .Code 0 }}p:error{{ end }}']
 
 [[blocks.segments]]
   leading_diamond = ''
   trailing_diamond = ' '
   template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-  foreground = '#ffffff'
-  background = '#0e8ac8'
+  foreground = 'p:on_deep'
+  background = 'p:java'
   type = 'java'
   style = 'diamond'
 [[blocks.segments]]
   leading_diamond = ''
   trailing_diamond = ' '
   template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
-  foreground = '#925837'
-  background = '#f3f0ec'
+  foreground = 'p:rust_fg'
+  background = 'p:rust'
   type = 'rust'
   style = 'diamond'
 [[blocks.segments]]
   template = '  {{ .Icon }}{{ if ne .Status "stopped" }}{{ .Artist }} - {{ .Track }}{{ end }} '
-  foreground = '#111111'
+  foreground = 'p:on_bright'
   powerline_symbol = ''
-  background = '#1BD760'
+  background = 'p:ytm'
   type = 'ytm'
   style = 'powerline'
 [[blocks.segments]]
   leading_diamond = ''
   trailing_diamond = ''
   template = ' {{ .CurrentDate | date .Format }} '
-  foreground = '#111111'
-  background = '#2e9599'
+  foreground = 'p:on_bright'
+  background = 'p:time'
   type = 'time'
   style = 'diamond'
 
@@ -146,7 +204,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '❯'
-    foreground = '#ff479c'
+    foreground = 'p:prompt'
     type = 'text'
     style = 'plain'
-    foreground_templates = ['{{ if gt .Code 0 }}#e91e63{{ end }}']
+    foreground_templates = ['{{ if gt .Code 0 }}p:error{{ end }}']
